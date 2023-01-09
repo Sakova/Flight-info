@@ -73,7 +73,7 @@ class FlightInfo
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       
       request = Net::HTTP::Get.new(url)
-      request["X-RapidAPI-Key"] = 'b52f29bbcbmsh2050c6fa7cd2f5ep144144jsn3671780c4e7a'
+      request["X-RapidAPI-Key"] = 'a4e7b0ebffmsh280b22419454e16p1febfdjsnc754aa81ea53'
       request["X-RapidAPI-Host"] = 'aerodatabox.p.rapidapi.com'
       
       response = http.request(request)
