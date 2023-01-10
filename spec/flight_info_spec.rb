@@ -41,6 +41,7 @@ describe FlightInfo do
       }
     }
   end
+  let(:csv_file_with_flight_data) { 'ready_flight_numbers.csv' }
 
   describe '#add_zero' do
     it 'returns flight number with four digits' do
@@ -232,7 +233,7 @@ describe FlightInfo do
 
   describe '#create_headers' do
     it 'creates csv file with headers' do
-      expect { subject.create_headers }.to change { CSV.readlines('redy_flight_numbers9.csv').size }.by(1)
+      expect { subject.create_headers }.to change { CSV.readlines(csv_file_with_flight_data).size }.by(1)
     end
   end
 
@@ -247,7 +248,7 @@ describe FlightInfo do
       }
 
       expect { subject.create_csv(flight_data, 'LH1829', 'LH1829', 1) }.to change {
-        CSV.readlines('redy_flight_numbers9.csv').size}.by(1)
+        CSV.readlines(csv_file_with_flight_data).size}.by(1)
     end
   end
 end
