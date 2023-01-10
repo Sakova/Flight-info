@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative '../flight_info'
-require 'rspec'
 
 describe FlightInfo do
   let(:correct_flight_number) { 'FS15' }
