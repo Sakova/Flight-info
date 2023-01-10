@@ -12,7 +12,7 @@ describe FlightInfo do
   let(:api_response_data) do
     {
       'greatCircleDistance' => {
-        'km' => 1268.386,
+        'km' => 1268.386
       },
       'departure' => {
         'airport' => {
@@ -24,7 +24,7 @@ describe FlightInfo do
             'lon' => -2.910609
           },
           'countryCode' => 'ES'
-        },
+        }
       },
       'arrival' => {
         'airport' => {
@@ -36,8 +36,8 @@ describe FlightInfo do
             'lon' => 11.7861
           },
           'countryCode' => 'DE'
-        },
-      },
+        }
+      }
     }
   end
 
@@ -85,8 +85,8 @@ describe FlightInfo do
     context 'with data from api response' do
       it 'returns array of needed data from hash' do
         expect(subject.take_data(api_response_data)).to eq([
-                                                             { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011,
-                                                               longitude: -2.910609 },
+                                                             { city: 'Bilbao', country: 'ES', iata: 'BIO',
+                                                               latitude: 43.3011, longitude: -2.910609 },
                                                              { city: 'Munich', country: 'DE',
                                                                iata: 'MUC', latitude: 48.3538, longitude: 11.7861 },
                                                              1268.386
@@ -155,9 +155,12 @@ describe FlightInfo do
       result = {
         route: [
           { arrival: { city: 'Munich', country: 'DE', iata: 'MUC', latitude: 48.3538, longitude: 11.7861 },
-            departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 }, distance: 1268.386 },
+            departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 },
+            distance: 1268.386 },
           { arrival: { city: 'Munich', country: 'DE', iata: 'MUC', latitude: 48.3538, longitude: 11.7861 },
-            departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 }, distance: 1268.386 }],
+            departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 },
+            distance: 1268.386 }
+        ],
         status: 'OK',
         distance: 2536.772,
         error_message: nil
@@ -200,11 +203,11 @@ describe FlightInfo do
             departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 },
             distance: 1268.386
           },
-          {
-            arrival: { city: 'Munich', country: 'DE', iata: 'MUC', latitude: 48.3538, longitude: 11.7861 },
-            departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 },
-            distance: 1268.386
-          }],
+                  {
+                    arrival: { city: 'Munich', country: 'DE', iata: 'MUC', latitude: 48.3538, longitude: 11.7861 },
+                    departure: { city: 'Bilbao', country: 'ES', iata: 'BIO', latitude: 43.3011, longitude: -2.910609 },
+                    distance: 1268.386
+                  }],
           distance: 2536.772, error_message: nil, status: 'OK'
         }
 
@@ -228,7 +231,7 @@ describe FlightInfo do
 
   describe '#create_headers' do
     it 'creates csv file with headers' do
-      expect{subject.create_headers}.to change{CSV.readlines('redy_flight_numbers9.csv').size}.by(1)
+      expect { subject.create_headers }.to change { CSV.readlines('redy_flight_numbers9.csv').size }.by(1)
     end
   end
 
@@ -242,7 +245,8 @@ describe FlightInfo do
         distance: 1268.386, error_message: nil, status: 'OK'
       }
 
-      expect{subject.create_csv(flight_data, 'LH1829', 'LH1829', 1)}.to change{CSV.readlines('redy_flight_numbers9.csv').size}.by(1)
+      expect { subject.create_csv(flight_data, 'LH1829', 'LH1829', 1) }.to change {
+        CSV.readlines('redy_flight_numbers9.csv').size}.by(1)
     end
   end
 end
