@@ -115,8 +115,10 @@ describe FlightInfo do
     end
 
     context 'with 400 code' do
-      it 'returns hash with message "The request failed"' do
-        expect(subject.creat_fail_response('400')).to eq({ distance: 0, error_message: 'The request failed', route: nil,
+      it 'returns hash with message "Flight number has invalid format"' do
+        expect(subject.creat_fail_response('400')).to eq({ distance: 0,
+                                                           error_message: 'Flight number has invalid format',
+                                                           route: nil,
                                                            status: 'FAIL' })
       end
     end
