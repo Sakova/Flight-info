@@ -10,11 +10,15 @@ CSV_FILE_WITH_FLIGHT_NUMBERS = 'flight_numbers.csv'
 CSV_FILE_FOR_DATA_RECORDING = 'ready_flight_numbers.csv'
 
 module FlightCSV
-  def create_headers
-    CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |hdr|
-      hdr << ['Example flight number', 'Flight number used for lookup', 'Lookup status', 'Number of legs',
-              'First leg departure airport IATA', 'Last leg arrival airport IATA', 'Distance in kilometers']
+  def write_to_csv(csv_line)
+    CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |line|
+      line << csv_line
     end
+  end
+
+  def create_headers
+    write_to_csv(['Example flight number', 'Flight number used for lookup', 'Lookup status', 'Number of legs',
+                  'First leg departure airport IATA', 'Last leg arrival airport IATA', 'Distance in kilometers'])
   end
 
   def parse_csv(file)
@@ -35,13 +39,9 @@ module FlightCSV
         a_iata = hash[:route][:arrival][:iata] || hash[:route][:arrival][:icao]
       end
 
-      CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |line|
-        line << [flight_number, number_for_lookup, 'OK', legs_number, d_iata, a_iata, hash[:distance]]
-      end
+      write_to_csv([flight_number, number_for_lookup, 'OK', legs_number, d_iata, a_iata, hash[:distance]])
     else
-      CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |line|
-        line << [flight_number, number_for_lookup, 'FAIL', '-', '-', '-', hash[:distance]]
-      end
+      write_to_csv([flight_number, number_for_lookup, 'FAIL', '-', '-', '-', hash[:distance]])
     end
   end
 end
