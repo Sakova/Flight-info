@@ -3,6 +3,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 require 'json'
+require 'dotenv/load'
 
 RESPONSE_STATUSES = { '200' => 'OK', '204' => 'Flight not found', '400' => 'The request failed',
                       '401' => 'unauthorized', '429' => 'Too Many API Requests', '500' => 'Server error' }.freeze
@@ -74,7 +75,7 @@ class FlightInfo
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
       request = Net::HTTP::Get.new(url)
-      request['X-RapidAPI-Key'] = 'a4e7b0ebffmsh280b22419454e16p1febfdjsnc754aa81ea53'
+      request['X-RapidAPI-Key'] = ENV['RAPID_API_KEY']
       request['X-RapidAPI-Host'] = 'aerodatabox.p.rapidapi.com'
 
       response = http.request(request)
@@ -175,4 +176,4 @@ class FlightInfo
   end
 end
 
-# FlightInfo.new.main("LH1829") # For searching flight information using flight number in string format
+p FlightInfo.new.main("LH1829") # For searching flight information using flight number in string format
