@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aerodatabox.p.rapidapi.com/flights/number/FS15
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - aerodatabox.p.rapidapi.com
+      X-Rapidapi-Key:
+      - "<RAPID_API_KEY>"
+      X-Rapidapi-Host:
+      - aerodatabox.p.rapidapi.com
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Tue, 10 Jan 2023 13:55:17 GMT
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private,max-age=300
+      Vary:
+      - Accept-Language
+      Cf-Ray:
+      - 7875e8d3086468e5-FRA
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Fliqun%2FLcvq%2FcS4fD%2BPKERSHmwxf8jWQr2rbvv667VZWcVslPt89iNG%2B%2F4woCTPCwqHffF4AHQFxDqxxDav995yEbrgOvYNXLS56K39oeVGELHKHSzwbSlUuVWB7rHLekUO%2FprMB"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Ratelimit-Free-Tier-Limit:
+      - '2000'
+      X-Ratelimit-Free-Tier-Remaining:
+      - '2000'
+      X-Ratelimit-Free-Tier-Reset:
+      - '2589220'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Limit:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Remaining:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Reset:
+      - '2589220'
+      X-Ratelimit-Tier-2-Limit:
+      - '250'
+      X-Ratelimit-Tier-2-Remaining:
+      - '122'
+      X-Ratelimit-Tier-2-Reset:
+      - '2589220'
+      X-Ratelimit-Tier-1-Limit:
+      - '250'
+      X-Ratelimit-Tier-1-Remaining:
+      - '250'
+      X-Ratelimit-Tier-1-Reset:
+      - '2589220'
+      X-Ratelimit-Tier-3-Limit:
+      - '250'
+      X-Ratelimit-Tier-3-Remaining:
+      - '250'
+      X-Ratelimit-Tier-3-Reset:
+      - '2589220'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - eu-central-1
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 10 Jan 2023 13:55:17 GMT
+recorded_with: VCR 6.1.0

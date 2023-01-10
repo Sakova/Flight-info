@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require_relative '../flight_info'
 
 describe FlightInfo do
@@ -65,19 +66,28 @@ describe FlightInfo do
   describe '#flight_api_request' do
     context 'with correct flight number' do
       it 'returns array of arrays with flight data and status code 200' do
-        expect(subject.flight_api_request(array_with_correct_flight_number)[0]).to include('200')
+        flight_data = VCR.use_cassette('flight_api_request_with_code_200') do
+          subject.flight_api_request(array_with_correct_flight_number)
+        end
+        expect(flight_data[0]).to include('200')
       end
     end
 
     context 'with invalid flight number' do
       it 'returns array of arrays with status code 204' do
-        expect(subject.flight_api_request(array_with_invalid_flight_number)[0]).to include('204')
+        flight_data = VCR.use_cassette('flight_api_request_with_code_204') do
+          subject.flight_api_request(array_with_invalid_flight_number)
+        end
+        expect(flight_data[0]).to include('204')
       end
     end
 
     context 'with invalid format of flight number' do
       it 'returns array of arrays with status code 400' do
-        expect(subject.flight_api_request(array_with_invalid_format_of_flight_number)[0]).to include('400')
+        flight_data = VCR.use_cassette('flight_api_request_with_code_400') do
+          subject.flight_api_request(array_with_invalid_format_of_flight_number)
+        end
+        expect(flight_data[0]).to include('400')
       end
     end
   end
@@ -193,7 +203,11 @@ describe FlightInfo do
         }
 
         it 'returns flight data' do
-          expect(subject.main('LH1829')).to eq(result)
+          flight_data = VCR.use_cassette('one_flight_api_request_from_main') do
+            subject.main('LH1829')
+          end
+
+          expect(flight_data).to eq(result)
         end
       end
 
@@ -213,7 +227,11 @@ describe FlightInfo do
         }
 
         it 'returns flight data' do
-          expect(subject.main('LH1829 LH1829')).to eq(result)
+          flight_data = VCR.use_cassette('two_flights_api_request_from_main') do
+            subject.main('LH1829 LH1829')
+          end
+
+          expect(flight_data).to eq(result)
         end
       end
     end
@@ -225,7 +243,11 @@ describe FlightInfo do
       }
 
       it 'returns hash with error message' do
-        expect(subject.main('QQ15')).to eq(result)
+        flight_data = VCR.use_cassette('incorrect_flight_api_request_from_main') do
+          subject.main('QQ15')
+        end
+
+        expect(flight_data).to eq(result)
       end
     end
   end

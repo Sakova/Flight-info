@@ -1,0 +1,85 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aerodatabox.p.rapidapi.com/flights/number/QQ0015
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - aerodatabox.p.rapidapi.com
+      X-Rapidapi-Key:
+      - "<RAPID_API_KEY>"
+      X-Rapidapi-Host:
+      - aerodatabox.p.rapidapi.com
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Tue, 10 Jan 2023 14:40:22 GMT
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private,max-age=300
+      Vary:
+      - Accept-Language
+      Cf-Ray:
+      - 78762ad9cbc49b83-FRA
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xFYrPu74azPJ1xP1CSwjTo3DgRYgb5QDoL5LXSRjaFxJlkn3bluqh9d6%2Bfj1aVr%2FDy%2BqXlo5KXtw45TdPwlQ4lH5%2FP8pM5OchIZIME0C47ND5iD4B8TZ1kdc9du5E53zraokWTTE"}],"group":"cf-nel","max_age":604800}'
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Cf-Cache-Status:
+      - DYNAMIC
+      X-Ratelimit-Free-Tier-Limit:
+      - '2000'
+      X-Ratelimit-Free-Tier-Remaining:
+      - '2000'
+      X-Ratelimit-Free-Tier-Reset:
+      - '2586515'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Limit:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Remaining:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Reset:
+      - '2586515'
+      X-Ratelimit-Tier-2-Limit:
+      - '250'
+      X-Ratelimit-Tier-2-Remaining:
+      - '115'
+      X-Ratelimit-Tier-2-Reset:
+      - '2586515'
+      X-Ratelimit-Tier-1-Limit:
+      - '250'
+      X-Ratelimit-Tier-1-Remaining:
+      - '250'
+      X-Ratelimit-Tier-1-Reset:
+      - '2586515'
+      X-Ratelimit-Tier-3-Limit:
+      - '250'
+      X-Ratelimit-Tier-3-Remaining:
+      - '250'
+      X-Ratelimit-Tier-3-Reset:
+      - '2586515'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - eu-central-1
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 10 Jan 2023 14:40:22 GMT
+recorded_with: VCR 6.1.0

@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aerodatabox.p.rapidapi.com/flights/number/LH1829
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - aerodatabox.p.rapidapi.com
+      X-Rapidapi-Key:
+      - "<RAPID_API_KEY>"
+      X-Rapidapi-Host:
+      - aerodatabox.p.rapidapi.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 10 Jan 2023 13:55:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private,max-age=300
+      Vary:
+      - Accept-Encoding
+      - Accept-Language
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - 7875e9019ca62c02-FRA
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=VftxscTI0doF24W6Gj7j9C%2B1URFH9m4yrZT4l2nLr4gxA6Sl6l%2BTl9rANUNzJbxpqGub5aea1QEIIC2fmtyrn5tzjmIqRD%2F6Jukf4i6xB69I8BjzS0%2FkE8XNq3MHtI6dFy%2FlnmmT"}],"group":"cf-nel","max_age":604800}'
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      X-Ratelimit-Free-Tier-Limit:
+      - '2000'
+      X-Ratelimit-Free-Tier-Remaining:
+      - '2000'
+      X-Ratelimit-Free-Tier-Reset:
+      - '2589212'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Limit:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Remaining:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Reset:
+      - '2589212'
+      X-Ratelimit-Tier-2-Limit:
+      - '250'
+      X-Ratelimit-Tier-2-Remaining:
+      - '121'
+      X-Ratelimit-Tier-2-Reset:
+      - '2589212'
+      X-Ratelimit-Tier-1-Limit:
+      - '250'
+      X-Ratelimit-Tier-1-Remaining:
+      - '250'
+      X-Ratelimit-Tier-1-Reset:
+      - '2589212'
+      X-Ratelimit-Tier-3-Limit:
+      - '250'
+      X-Ratelimit-Tier-3-Remaining:
+      - '250'
+      X-Ratelimit-Tier-3-Reset:
+      - '2589212'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - eu-central-1
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"greatCircleDistance":{"meter":1268385.95,"km":1268.386,"mile":788.138,"nm":684.874,"feet":4161371.23},"departure":{"airport":{"icao":"LEBB","iata":"BIO","name":"Bilbao","shortName":"Bilbao","municipalityName":"Bilbao","location":{"lat":43.3011,"lon":-2.910609},"countryCode":"ES"},"scheduledTimeLocal":"2022-12-23
+        18:45+01:00","scheduledTimeUtc":"2022-12-23 17:45Z","terminal":"1","checkInDesk":"01-08","gate":"A13","quality":["Basic"]},"arrival":{"airport":{"icao":"EDDM","iata":"MUC","name":"Munich","shortName":"Munich","municipalityName":"Munich","location":{"lat":48.3538,"lon":11.7861},"countryCode":"DE"},"scheduledTimeLocal":"2022-12-23
+        20:55+01:00","actualTimeLocal":"2022-12-23 21:00+01:00","scheduledTimeUtc":"2022-12-23
+        19:55Z","actualTimeUtc":"2022-12-23 20:00Z","terminal":"2","quality":["Basic","Live"]},"lastUpdatedUtc":"2022-12-23
+        20:42Z","number":"LH 1829","callSign":"DLH92K","status":"Arrived","codeshareStatus":"IsOperator","isCargo":false,"aircraft":{"reg":"D-AIBM","modeS":"3C644D","model":"Airbus
+        A319"},"airline":{"name":"Lufthansa"}}]'
+  recorded_at: Tue, 10 Jan 2023 13:55:25 GMT
+recorded_with: VCR 6.1.0

@@ -1,0 +1,90 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://aerodatabox.p.rapidapi.com/flights/number/784
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - aerodatabox.p.rapidapi.com
+      X-Rapidapi-Key:
+      - "<RAPID_API_KEY>"
+      X-Rapidapi-Host:
+      - aerodatabox.p.rapidapi.com
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Tue, 10 Jan 2023 13:55:09 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - private,max-age=300
+      Vary:
+      - Accept-Encoding
+      - Accept-Language
+      Cf-Cache-Status:
+      - DYNAMIC
+      Cf-Ray:
+      - 7875e8a1ca609a11-FRA
+      Nel:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=9VzEiYP9HQ38NTTrMR3YiCBYIdaScQyxj7a0zIL0CQPYRQPW7Bh2nOPzb3Iz1XWpMRcYiSra9qgNVSUChlHtER501e%2F%2B%2Fe1kgQ48T8jclz6yrpEfqzr2qwQIfQDg2yzMJ0f2AWux"}],"group":"cf-nel","max_age":604800}'
+      Alt-Svc:
+      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      X-Ratelimit-Free-Tier-Limit:
+      - '2000'
+      X-Ratelimit-Free-Tier-Remaining:
+      - '2000'
+      X-Ratelimit-Free-Tier-Reset:
+      - '2589228'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Limit:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Remaining:
+      - '25'
+      X-Ratelimit-Tier-4-%28flight-Alert-Api%29-Reset:
+      - '2589228'
+      X-Ratelimit-Tier-2-Limit:
+      - '250'
+      X-Ratelimit-Tier-2-Remaining:
+      - '123'
+      X-Ratelimit-Tier-2-Reset:
+      - '2589228'
+      X-Ratelimit-Tier-1-Limit:
+      - '250'
+      X-Ratelimit-Tier-1-Remaining:
+      - '250'
+      X-Ratelimit-Tier-1-Reset:
+      - '2589228'
+      X-Ratelimit-Tier-3-Limit:
+      - '250'
+      X-Ratelimit-Tier-3-Remaining:
+      - '250'
+      X-Ratelimit-Tier-3-Reset:
+      - '2589228'
+      Server:
+      - RapidAPI-1.2.8
+      X-Rapidapi-Version:
+      - 1.2.8
+      X-Rapidapi-Region:
+      - AWS - eu-central-1
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"Flight number has invalid format"}'
+  recorded_at: Tue, 10 Jan 2023 13:55:09 GMT
+recorded_with: VCR 6.1.0
