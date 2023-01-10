@@ -83,30 +83,26 @@ class FlightInfo
     end
   end
 
-  def take_data(hash)
-    departure = {}
-    arrival = {}
+  def take_data_from_hash(data)
+    hash = {}
 
+    iata = data['iata']
+    icao = data['icao']
+    name = iata ? :iata : :icao
+    hash[name] = iata || icao
+    hash[:city] = data&.dig('municipalityName') || '-'
+    hash[:country] = data&.dig('countryCode') || '-'
+    hash[:latitude] = data&.dig('location', 'lat') || '-'
+    hash[:longitude] = data&.dig('location', 'lon') || '-'
+    hash
+  end
+
+  def take_data(hash)
     departure_data = hash['departure']['airport']
     arrival_data = hash['arrival']['airport']
 
-    d_iata = departure_data['iata']
-    d_icao = departure_data['icao']
-    name = d_iata ? :iata : :icao
-    departure[name] = d_iata || d_icao
-    departure[:city] = departure_data&.dig('municipalityName') || '-'
-    departure[:country] = departure_data&.dig('countryCode') || '-'
-    departure[:latitude] = departure_data&.dig('location', 'lat') || '-'
-    departure[:longitude] = departure_data&.dig('location', 'lon') || '-'
-
-    a_iata = arrival_data['iata']
-    a_icao = arrival_data['icao']
-    name = a_iata ? :iata : :icao
-    arrival[name] = d_iata ? a_iata : a_icao
-    arrival[:city] = arrival_data&.dig('municipalityName') || '-'
-    arrival[:country] = arrival_data&.dig('countryCode') || '-'
-    arrival[:latitude] = arrival_data&.dig('location', 'lat') || '-'
-    arrival[:longitude] = arrival_data&.dig('location', 'lon') || '-'
+    departure = take_data_from_hash(departure_data)
+    arrival = take_data_from_hash(arrival_data)
 
     distance = hash&.dig('greatCircleDistance', 'km') || 0
 
