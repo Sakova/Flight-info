@@ -233,12 +233,14 @@ describe FlightInfo do
 
   describe '#create_headers' do
     it 'creates csv file with headers' do
+      File.new(csv_file_with_flight_data, 'w')
       expect { subject.create_headers }.to change { CSV.readlines(csv_file_with_flight_data).size }.by(1)
     end
   end
 
   describe '#create_csv' do
     it 'fills csv file with flight data' do
+      File.new(csv_file_with_flight_data, 'w')
       flight_data = {
         route: {
           arrival: { city: 'Munich', country: 'DE', iata: 'MUC', latitude: 48.3538, longitude: 11.7861 },
