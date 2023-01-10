@@ -1,13 +1,19 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    crack (0.4.5)
+      rexml
     diff-lcs (1.5.0)
     dotenv (2.8.1)
+    hashdiff (1.0.1)
     json (2.6.2)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
+    public_suffix (5.0.1)
     rainbow (3.1.1)
     regexp_parser (2.6.0)
     rexml (3.2.5)
@@ -39,6 +45,10 @@ GEM
     ruby-progressbar (1.11.0)
     unicode-display_width (2.2.0)
     vcr (6.1.0)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
 
 PLATFORMS
   x86_64-darwin-20
@@ -48,6 +58,7 @@ DEPENDENCIES
   rspec
   rubocop
   vcr
+  webmock
 
 RUBY VERSION
    ruby 3.0.0p0
