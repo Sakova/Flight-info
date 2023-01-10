@@ -9,6 +9,7 @@ RESPONSE_STATUSES = { '200' => 'OK', '204' => 'Flight not found', '400' => 'The 
                       '401' => 'unauthorized', '429' => 'Too Many API Requests', '500' => 'Server error' }.freeze
 CSV_FILE_WITH_FLIGHT_NUMBERS = 'flight_numbers.csv'
 CSV_FILE_FOR_DATA_RECORDING = 'ready_flight_numbers.csv'
+AMOUNT_MAX_API_RETRIES = 4
 
 module FlightCSV
   def write_to_csv(csv_line)
@@ -66,6 +67,18 @@ class FlightInfo
     end
   end
 
+  def retry_request(http, request)
+    response = nil
+    (1..AMOUNT_MAX_API_RETRIES).each do
+      sleep(1)
+      response = http.request(request)
+      next unless [200, 204, 400, 401].include?(response.code.to_i)
+
+      break
+    end
+    response
+  end
+
   def flight_api_request(flight_number)
     flight_number.reduce([]) do |array, number|
       url = URI("https://aerodatabox.p.rapidapi.com/flights/number/#{number}")
@@ -80,6 +93,8 @@ class FlightInfo
 
       response = http.request(request)
       response_code = response.code
+      response = retry_request(http, request) unless [200, 204, 400, 401].include?(response_code.to_i)
+
       data = response_code == '200' ? JSON.parse(response.read_body).push(response.code) : ['empty', response_code]
       array << data
     end
