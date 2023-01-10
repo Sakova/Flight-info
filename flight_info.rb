@@ -176,4 +176,4 @@ class FlightInfo
   end
 end
 
-p FlightInfo.new.main("LH1829") # For searching flight information using flight number in string format
+# FlightInfo.new.main("LH1829") # For searching flight information using flight number in string format
