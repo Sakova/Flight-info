@@ -7,10 +7,11 @@ require 'json'
 RESPONSE_STATUSES = { '200' => 'OK', '204' => 'Flight not found', '400' => 'The request failed',
                       '401' => 'unauthorized', '429' => 'Too Many API Requests', '500' => 'Server error' }.freeze
 CSV_FILE_WITH_FLIGHT_NUMBERS = 'flight_numbers.csv'
+CSV_FILE_FOR_DATA_RECORDING = 'ready_flight_numbers.csv'
 
 module FlightCSV
   def create_headers
-    CSV.open('redy_flight_numbers9.csv', 'ab') do |hdr|
+    CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |hdr|
       hdr << ['Example flight number', 'Flight number used for lookup', 'Lookup status', 'Number of legs',
               'First leg departure airport IATA', 'Last leg arrival airport IATA', 'Distance in kilometers']
     end
@@ -34,11 +35,11 @@ module FlightCSV
         a_iata = hash[:route][:arrival][:iata] || hash[:route][:arrival][:icao]
       end
 
-      CSV.open('redy_flight_numbers9.csv', 'ab') do |line|
+      CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |line|
         line << [flight_number, number_for_lookup, 'OK', legs_number, d_iata, a_iata, hash[:distance]]
       end
     else
-      CSV.open('redy_flight_numbers9.csv', 'ab') do |line|
+      CSV.open(CSV_FILE_FOR_DATA_RECORDING, 'ab') do |line|
         line << [flight_number, number_for_lookup, 'FAIL', '-', '-', '-', hash[:distance]]
       end
     end
