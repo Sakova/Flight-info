@@ -7,8 +7,8 @@ require 'dotenv/load'
 
 RESPONSE_STATUSES = { '200' => 'OK', '204' => 'Flight not found', '400' => 'Flight number has invalid format',
                       '401' => 'unauthorized', '429' => 'Too Many API Requests', '500' => 'Server error' }.freeze
-CSV_FILE_WITH_FLIGHT_NUMBERS = 'flight_numbers.csv'
-CSV_FILE_FOR_DATA_RECORDING = 'ready_flight_numbers.csv'
+CSV_FILE_WITH_FLIGHT_NUMBERS = 'flight_numbers.csv'.freeze
+CSV_FILE_FOR_DATA_RECORDING = 'ready_flight_numbers.csv'.freeze
 AMOUNT_MAX_API_RETRIES = 4
 
 module FlightCSV
