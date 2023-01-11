@@ -26,7 +26,7 @@ module FlightCSV
   def parse_csv(file)
     file_data = CSV.read(file)
     create_headers
-    file_data[1..].flatten.each { |flight| main(flight) }
+    file_data[1..].flatten.each { |flight| get_flight_data(flight) }
   end
 
   def create_csv(hash, flight_number, number_for_lookup, legs_number)
@@ -179,7 +179,7 @@ class FlightInfo
     end
   end
 
-  def main(flight_number)
+  def get_flight_data(flight_number)
     check_result = flight_number_check(flight_number)
     return { route: nil, status: 'FAIL', distance: 0, error_message: 'Invalid flight number' } if check_result.empty?
 
@@ -191,4 +191,4 @@ class FlightInfo
   end
 end
 
-# FlightInfo.new.main("LH1829") # For searching flight information using flight number in string format
+# FlightInfo.new.get_flight_data("LH1829") # For searching flight information using flight number in string format
