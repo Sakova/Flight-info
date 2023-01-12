@@ -190,5 +190,3 @@ class FlightInfo
     # create_csv(parse_result, flight_number, check_result.join(" "), statuses_code.length)  # For filling csv file data
   end
 end
-
-# FlightInfo.new.get_flight_data("LH1829") # For searching flight information using flight number in string format
