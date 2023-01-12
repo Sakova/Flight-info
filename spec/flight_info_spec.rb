@@ -193,7 +193,7 @@ describe FlightInfo do
     end
   end
 
-  describe '#main' do
+  describe '#get_flight_data' do
     context 'with correct flight number' do
       context 'with one flight' do
         result = {
@@ -206,7 +206,7 @@ describe FlightInfo do
 
         it 'returns flight data' do
           flight_data = VCR.use_cassette('one_flight_api_request_from_main') do
-            subject.main('LH1829')
+            subject.get_flight_data('LH1829')
           end
 
           expect(flight_data).to eq(result)
@@ -230,7 +230,7 @@ describe FlightInfo do
 
         it 'returns flight data' do
           flight_data = VCR.use_cassette('two_flights_api_request_from_main') do
-            subject.main('LH1829 LH1829')
+            subject.get_flight_data('LH1829 LH1829')
           end
 
           expect(flight_data).to eq(result)
@@ -246,7 +246,7 @@ describe FlightInfo do
 
       it 'returns hash with error message' do
         flight_data = VCR.use_cassette('incorrect_flight_api_request_from_main') do
-          subject.main('QQ15')
+          subject.get_flight_data('QQ15')
         end
 
         expect(flight_data).to eq(result)
