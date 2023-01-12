@@ -6,7 +6,8 @@ require 'json'
 require 'dotenv/load'
 
 RESPONSE_STATUSES = { '200' => 'OK', '204' => 'Flight not found', '400' => 'Flight number has invalid format',
-                      '401' => 'unauthorized', '429' => 'Too Many API Requests', '500' => 'Server error' }.freeze
+                      '401' => 'unauthorized', '429' => 'Too Many API Requests', '500' => 'Server error',
+                      '598' => 'Read Timeout Error' }.freeze
 CSV_FILE_WITH_FLIGHT_NUMBERS = 'flight_numbers.csv'.freeze
 CSV_FILE_FOR_DATA_RECORDING = 'ready_flight_numbers.csv'.freeze
 AMOUNT_MAX_API_RETRIES = 4
@@ -67,23 +68,12 @@ class FlightInfo
     end
   end
 
-  def retry_request(http, request)
-    response = nil
-    (1..AMOUNT_MAX_API_RETRIES).each do
-      sleep(1)
-      response = http.request(request)
-      next unless [200, 204, 400, 401].include?(response.code.to_i)
-
-      break
-    end
-    response
-  end
-
   def flight_api_request(flight_number)
     flight_number.reduce([]) do |array, number|
       url = URI("https://aerodatabox.p.rapidapi.com/flights/number/#{number}")
 
       http = Net::HTTP.new(url.host, url.port)
+      http.read_timeout = 10
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
@@ -91,9 +81,19 @@ class FlightInfo
       request['X-RapidAPI-Key'] = ENV['RAPID_API_KEY']
       request['X-RapidAPI-Host'] = 'aerodatabox.p.rapidapi.com'
 
-      response = http.request(request)
-      response_code = response.code
-      response = retry_request(http, request) unless [200, 204, 400, 401].include?(response_code.to_i)
+      response = begin
+        attempts ||= 1
+        http.request(request)
+      rescue Net::ReadTimeout
+        if (attempts += 1) <= AMOUNT_MAX_API_RETRIES
+          sleep(1)
+          retry
+        else
+          { code: '598' }
+        end
+      end
+
+      response_code = response.is_a?(Hash) ? response[:code] : response.code
 
       data = response_code == '200' ? JSON.parse(response.read_body).push(response.code) : ['empty', response_code]
       array << data
